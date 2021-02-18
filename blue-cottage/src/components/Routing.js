@@ -1,50 +1,92 @@
+//
+import {
+  Container,
+  Drawer,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Typography
+} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import HomeIcon from "@material-ui/icons/Home";
+import InfoIcon from "@material-ui/icons/Info";
 import React from "react";
 import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
-import { Container, Image, Menu } from "semantic-ui-react";
-import About from '../screens/About';
-import Users from '../screens/Users';
-
+ 
+const useStyles = makeStyles((theme) => ({
+  drawerPaper: { width: "inherit" },
+  link: {
+    textDecoration: "none",
+    color: theme.palette.text.primary,
+  },
+}));
 
 export default function Routing() {
+  const classes = useStyles();
+
   return (
     <Router>
       <>
-        <Menu>
-          <Container>
-            <Menu.Item>
-              <i className="phone icon"></i>
-            </Menu.Item>
-            <Menu.Item header>Blue Cottage Remodeling</Menu.Item>
-            <Menu.Item>
-              <Link to="/">Home</Link>
-            </Menu.Item>
-            <Menu.Item>
-              <Link to="/about">About</Link>
-            </Menu.Item>
-            <Menu.Item>
-              <Link to="/users">Users</Link>
-            </Menu.Item>
-            <Menu.Item position="right">
-              <Image
-                src="https://react.semantic-ui.com/images/avatar/large/chris.jpg"
-                avatar
-              />
-            </Menu.Item>
-            <Menu.Item>Bayon</Menu.Item>
-          </Container>
-        </Menu>
+        <Drawer
+          style={{ width: "220px" }}
+          variant="persistent"
+          anchor="left"
+          open={true}
+          classes={{ paper: classes.drawerPaper }}
+        >
+          <List>
+            <Link to="/">
+              <ListItem button>
+                <ListItemIcon>
+                  <HomeIcon />
+                </ListItemIcon>
+                <ListItemText primary={"Home"} />
+              </ListItem>
+            </Link>
 
-        {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
+            <Link to="/about">
+              <ListItem button>
+                <ListItemIcon>
+                  <InfoIcon />
+                </ListItemIcon>
+                <ListItemText primary={"About"} />
+              </ListItem>
+            </Link>
+          </List>
+        </Drawer>
         <Switch>
-          <Route path="/about">
-            <About />
+          <Route exact path="/">
+            <Container>
+              <Typography variant="h3" gutterBottom>
+                Blue Cottage Remodeling
+              </Typography>
+              <Typography variant="body1" gutterBottom>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </Typography>
+            </Container>
           </Route>
-          <Route path="/users">
-            <Users />
-          </Route>
-          <Route path="/">
-            <Home />
+          <Route exact path="/about">
+            <Container>
+              <Typography variant="h3" gutterBottom>
+                About
+              </Typography>
+              <Typography variant="body1" gutterBottom>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </Typography>
+            </Container>
           </Route>
         </Switch>
       </>
@@ -52,27 +94,10 @@ export default function Routing() {
   );
 }
 
-function Home() {
-  return (
-    <>
-      <h2>Blue Cottage Remodeling</h2>
-    </>
-  );
-}
-/*
-function About() {
-  return (
-    <>
-      <h2>About</h2>
-    </>
-  );
-}
-
-function Users() {
-  return (
-    <>
-      <h2>Users</h2>
-    </>
-  );
-}
-*/
+// function Home() {
+//   return (
+//     <>
+//       <h2>Blue Cottage Remodeling</h2>
+//     </>
+//   );
+// }
