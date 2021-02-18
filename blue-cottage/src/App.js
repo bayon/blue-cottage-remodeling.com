@@ -1,17 +1,13 @@
-import './App.css';
-import logo from './logo.svg';
+import "semantic-ui-css/semantic.min.css";
+import "./App.css";
+import Routing from "./components/Routing";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Blue Cottage Remodeling
-        </p>
-        
-      </header>
-    </div>
+        < >
+          <Routing />
+        </>
+   
   );
 }
 
